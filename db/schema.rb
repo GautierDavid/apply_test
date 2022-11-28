@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_27_172537) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_130302) do
   create_table "communes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -18,6 +18,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_172537) do
     t.integer "code_insee"
     t.integer "intercommunality_id"
     t.index ["intercommunality_id"], name: "index_communes_on_intercommunality_id"
+  end
+
+  create_table "communes_streets", id: false, force: :cascade do |t|
+    t.integer "street_id", null: false
+    t.integer "commune_id", null: false
+    t.index ["commune_id"], name: "index_communes_streets_on_commune_id"
+    t.index ["street_id"], name: "index_communes_streets_on_street_id"
   end
 
   create_table "intercommunalities", force: :cascade do |t|
